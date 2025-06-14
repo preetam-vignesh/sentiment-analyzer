@@ -1,18 +1,14 @@
+import os
 from flask import Flask, render_template, request, jsonify
 from nltk.sentiment import SentimentIntensityAnalyzer
 
-# Initialize Flask app
 app = Flask(__name__)
-
-# Initialize Sentiment Analyzer
 sia = SentimentIntensityAnalyzer()
 
-# Home route
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Sentiment analysis route
 @app.route('/analyze', methods=['POST'])
 def analyze():
     data = request.get_json()
@@ -21,20 +17,17 @@ def analyze():
     if not text:
         return jsonify({'error': 'No text provided'}), 400
 
-    # Get sentiment score
-    sentiment_scores = sia.polarity_scores(text)
-    sentiment_score = sentiment_scores['compound']
+    sentiment_score = sia.polarity_scores(text)['compound']
 
-    # Determine sentiment category
     if sentiment_score >= 0.05:
-        sentiment = 'pos'
+        sentiment = 'Positive'
     elif sentiment_score <= -0.05:
-        sentiment = 'neg'
+        sentiment = 'Negative'
     else:
-        sentiment = 'neu'
+        sentiment = 'Neutral'
 
     return jsonify({'sentiment': sentiment, 'score': sentiment_score})
 
-# Run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Render needs this
+    app.run(host='0.0.0.0', port=port)
