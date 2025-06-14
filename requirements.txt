@@ -1,4 +1,5 @@
-flask
+Flask
+nltk
+gunicorn
 scikit-learn
 pandas
-nltk
