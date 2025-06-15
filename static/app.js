@@ -14,7 +14,7 @@ function analyzeSentiment() {
 
     document.getElementById('spinner').style.display = 'block';
 
-    fetch('https://sentiment-analyzer-je75.onrender.com/analyze', {
+    fetch('/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: text })
