@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Sentiment Analysis Website</h1>
+        <p>Click the button below to start analyzing sentiments!</p>
+        <button onclick="location.href='/sentiment'">Enter</button>
+    </div>
+</body>
+</html>

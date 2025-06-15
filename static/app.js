@@ -30,11 +30,11 @@ function analyzeSentiment() {
             let sentimentText = '';
             let emoji = '';
 
-            if (data.sentiment === 'pos') {
+            if (data.sentiment === 'Positive') {
                 color = 'green';
                 sentimentText = 'Positive';
                 emoji = '😊';
-            } else if (data.sentiment === 'neg') {
+            } else if (data.sentiment === 'Negative') {
                 color = 'red';
                 sentimentText = 'Negative';
                 emoji = '😞';
@@ -67,6 +67,13 @@ function addToHistory(text, sentiment, emoji) {
 
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
+
+    const toggleButton = document.getElementById('toggleDarkModeBtn');
+    if (document.body.classList.contains('dark-mode')) {
+        toggleButton.textContent = 'Toggle Light Mode';
+    } else {
+        toggleButton.textContent = 'Toggle Dark Mode';
+    }
 }
 
 function clearHistory() {

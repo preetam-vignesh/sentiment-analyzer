@@ -1,11 +1,16 @@
-import os
 from flask import Flask, render_template, request, jsonify
 from nltk.sentiment import SentimentIntensityAnalyzer
+import nltk
+nltk.download('vader_lexicon')
 
 app = Flask(__name__)
 sia = SentimentIntensityAnalyzer()
 
 @app.route('/')
+def welcome():
+    return render_template('welcome.html')
+
+@app.route('/sentiment')
 def index():
     return render_template('index.html')
 
@@ -29,5 +34,4 @@ def analyze():
     return jsonify({'sentiment': sentiment, 'score': sentiment_score})
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))  # Render needs this
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=5000)

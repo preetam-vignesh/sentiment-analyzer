@@ -153,6 +153,21 @@ body.dark-mode #historyList li:hover {
     background-color: #444;
 }
 
+/* Center the welcome content */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container button {
+    margin-top: 20px;
+}
+
+
 /* ====== Animations ====== */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
